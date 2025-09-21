@@ -31,5 +31,25 @@ class Queue:
         if self.front is None:
             self.rear = None
         return temp.data
-        
+    
+
+    def peek(self):
+        if self.is_Empty():
+            return "Queue is empty"
+        return self.front.data
+    
+    def is_Empty(self):
+        return self.size == 0
+    
+    def size_of_the_queue(self):
+        return self.size
+    
+
+    def printQueue(self):
+        temp = self.front
+
+        while temp:
+            print(temp.data, end="-> ")
+            temp = temp.next
+        print()
 
