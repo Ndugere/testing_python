@@ -11,14 +11,25 @@ class Queue:
     
     def enqueue(self, element):
         new_node = Node(element)
+
         if self.rear is None:
             self.front = self.rear = new_node
-            self.size += 1
-            return
         else:
             self.rear.next = new_node
             self.rear = new_node
-            self.size += 1
+        self.size += 1
+    
 
+    def dequeue(self):
+        if self.is_Empty():
+            return "Queue is empty"
+        temp = self.front
 
+        self.front = self.front.next
+        self.size -= 1
+
+        if self.front is None:
+            self.rear = None
+        return temp.data
+        
 
