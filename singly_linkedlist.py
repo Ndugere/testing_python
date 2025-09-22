@@ -1,66 +1,65 @@
 class Node:
+    """A node in a singly linked list."""
     def __init__(self, data):
         self.data = data
         self.next = None
 
 
 class LinkedList:
+    """A simple singly linked list implementation."""
     def __init__(self):
         self.head = None
         self.length = 0
 
     def prepend(self, data):
-        """
-        Prepend a new node to the front of the list (like a stack).
-        """
+        """Insert a new node at the beginning (O(1))."""
         new_node = Node(data)
-        if self.head is not None:
-            new_node.next = self.head
+        new_node.next = self.head
         self.head = new_node
         self.length += 1
 
-    def is_empty(self):
-        """
-        Return True if the list is empty (O(1)).
-        """
-        return self.length == 0
-
     def append(self, data):
-        """
-        Append a new node at the end of the list (O(n)).
-        """
-        if self.is_empty():
-            self.prepend(data)
+        """Insert a new node at the end (O(n))."""
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
         else:
-            new_node = Node(data)
-            current_node = self.head
-            while current_node.next:
-                current_node = current_node.next
-            current_node.next = new_node
-            self.length += 1
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+        self.length += 1
 
     def delete(self, value):
-        """
-        Delete a node by value (O(n)).
-        """
-        if self.is_empty():
-            return "No such value"
+        """Delete the first node with the given value (O(n))."""
+        if not self.head:
+            raise ValueError("Value not found in list")
 
-        elif self.head.data == value:
+        if self.head.data == value:
             self.head = self.head.next
             self.length -= 1
-            return value
+            return
 
-        else:
-            current_node = self.head
-            while current_node.next:
-                if current_node.next.data == value:
-                    current_node.next = current_node.next.next
-                    self.length -= 1
-                    return value
-                current_node = current_node.next
-            return "No such value"
+        current = self.head
+        while current.next:
+            if current.next.data == value:
+                current.next = current.next.next
+                self.length -= 1
+                return
+            current = current.next
 
+        raise ValueError("Value not found in list")
+
+    def __len__(self):
+        return self.length
+
+    def __iter__(self):
+        """Allow iteration over the list."""
+        current = self.head
+        while current:
+            yield current.data
+            current = current.next
+            
     def __repr__(self):
         """
         Traverse the list and return a string representation (O(n)).
