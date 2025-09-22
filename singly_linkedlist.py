@@ -20,12 +20,12 @@ class Linkedlist:
     
     def isEmpty(self):
         """
-        returns true if the lenght of the list is zero i.e if empty
+        returns true if the length of the list is zero i.e if empty
         this operation is O(1)
         """
         return self.length == 0
     
-    def post_pend(self, data):
+    def append(self, data):
         """
         This method append the a new node at the end of the list
         this operation is O(n)
@@ -39,8 +39,37 @@ class Linkedlist:
                 current_node = current_node.next
             current_node.next = new_node
             self.length += 1
+
     
+    def delete(self, value):
+        """
+        This is a method that deletes a node by value
+        the operation is big O(n)
+        """
+        if self.isEmpty():
+            return "No such value"
+        
+        elif self.head.data == value:
+            self.head = self.head.next
+            self.length -= 1
+            return value 
+
+        else:
+            current_node = self.head
+            while current_node.next:
+                if current_node.next.data == value:
+                    current_node.next = current_node.next.next
+                    self.length -= 1
+                    return value
+                current_node = current_node.next
+            return "No such value"
+        
+
     def __repr__(self):
+        """
+        This is a representation method that traverses the entire list and return it
+        it operation efficiency is O(n)
+        """
         nodes = []
         current_node = self.head
         while current_node:
@@ -50,4 +79,5 @@ class Linkedlist:
                 nodes.append(f"-> Tail: [{current_node.data}]")
             else:
                 nodes.append(f"-> [{current_node.data}]")
+            current_node = current_node.next
         return "".join(nodes)
