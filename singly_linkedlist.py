@@ -3,34 +3,33 @@ class Node:
         self.data = data
         self.next = None
 
-class Linkedlist:
+
+class LinkedList:
     def __init__(self):
         self.head = None
         self.length = 0
 
     def prepend(self, data):
         """
-        This method prepend a new node in the front of the list like a stack
+        Prepend a new node to the front of the list (like a stack).
         """
         new_node = Node(data)
         if self.head is not None:
             new_node.next = self.head
         self.head = new_node
         self.length += 1
-    
-    def isEmpty(self):
+
+    def is_empty(self):
         """
-        returns true if the length of the list is zero i.e if empty
-        this operation is O(1)
+        Return True if the list is empty (O(1)).
         """
         return self.length == 0
-    
+
     def append(self, data):
         """
-        This method append the a new node at the end of the list
-        this operation is O(n)
+        Append a new node at the end of the list (O(n)).
         """
-        if self.isEmpty():
+        if self.is_empty():
             self.prepend(data)
         else:
             new_node = Node(data)
@@ -40,19 +39,17 @@ class Linkedlist:
             current_node.next = new_node
             self.length += 1
 
-    
     def delete(self, value):
         """
-        This is a method that deletes a node by value
-        the operation is big O(n)
+        Delete a node by value (O(n)).
         """
-        if self.isEmpty():
+        if self.is_empty():
             return "No such value"
-        
+
         elif self.head.data == value:
             self.head = self.head.next
             self.length -= 1
-            return value 
+            return value
 
         else:
             current_node = self.head
@@ -63,12 +60,10 @@ class Linkedlist:
                     return value
                 current_node = current_node.next
             return "No such value"
-        
 
     def __repr__(self):
         """
-        This is a representation method that traverses the entire list and return it
-        it operation efficiency is O(n)
+        Traverse the list and return a string representation (O(n)).
         """
         nodes = []
         current_node = self.head
