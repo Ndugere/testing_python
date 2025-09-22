@@ -39,4 +39,15 @@ class Linkedlist:
                 current_node = current_node.next
             current_node.next = new_node
             self.length += 1
-
+    
+    def __repr__(self):
+        nodes = []
+        current_node = self.head
+        while current_node:
+            if current_node is self.head:
+                nodes.append(f"Head: -> [{current_node.data}]")
+            elif current_node.next is None:
+                nodes.append(f"-> Tail: [{current_node.data}]")
+            else:
+                nodes.append(f"-> [{current_node.data}]")
+        return "".join(nodes)
