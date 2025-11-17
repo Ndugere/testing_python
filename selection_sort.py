@@ -1,4 +1,4 @@
-def selection_sort(arr = [2, 5, 1, 0]):
+def selection_sort(arr = [2, 5, 1, 1, 0]):
     #[2, 3, 1, 0]
 
     new_sorted_list = []
