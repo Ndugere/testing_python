@@ -1,60 +1,28 @@
-def merge_sort(lst):
-    """
-    Recursively sorts a list in ascending order using the merge sort algorithm.
+def merge_sort(arr=[5, 4, 1, 2, 3, 7, 7, 8]):
+    if len(arr) <= 1:
+        return arr
 
-    Steps:
-    1. If the list has 0 or 1 elements, it's already sorted.
-    2. Split the list into two halves.
-    3. Recursively sort each half.
-    4. Merge the two sorted halves into a single sorted list.
-    """
-    if len(lst) <= 1:
-        return lst
+    mid = len(arr) // 2
+    left_side = merge_sort(arr[:mid])
+    right_side = merge_sort(arr[mid:])
 
-    left, right = split_list(lst)
-    left = merge_sort(left)
-    right = merge_sort(right)
+    i = 0
+    j = 0
+    res = []
 
-    return sorted_list(left, right)
-
-def split_list(lst):
-    """
-    Splits a list into two halves.
-
-    Parameters:
-    - lst: The list to split.
-
-    Returns:
-    - A tuple containing the left and right halves.
-    """
-    mid = len(lst) // 2
-    return lst[:mid], lst[mid:]
-
-def sorted_list(left, right):
-    """
-    Merges two sorted lists into one sorted list.
-
-    Parameters:
-    - left: First sorted list.
-    - right: Second sorted list.
-
-    Returns:
-    - A new list containing all elements from left and right, sorted.
-    """
-    result = []
-    i, j = 0, 0
-
-    # Compare elements from both lists and append the smaller one
-    while i < len(left) and j < len(right):
-        if left[i] < right[j]:
-            result.append(left[i])
+    # Merge step
+    while i < len(left_side) and j < len(right_side):
+        if left_side[i] <= right_side[j]:
+            res.append(left_side[i])
             i += 1
         else:
-            result.append(right[j])
+            res.append(right_side[j])
             j += 1
 
-    # Append any remaining elements from both lists
-    result.extend(left[i:])
-    result.extend(right[j:])
+    # Add leftovers
+    res.extend(left_side[i:])
+    res.extend(right_side[j:])
 
-    return result
+    return res
+
+print(merge_sort())
