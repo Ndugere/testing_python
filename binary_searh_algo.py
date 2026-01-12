@@ -14,7 +14,6 @@ def binary_search_algo(target, arr):
     return -1
 
 
-
 def main():
     target = 7
     arr = [1,2,3,4,5]
