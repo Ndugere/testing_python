@@ -16,6 +16,7 @@ def starting_and_ending_index_of_target_in_a_sorted_array(arr: list, target: int
     
     left = 0
     right = len(arr) - 1
+    
     while left <= right:
         mid = (left +right)//2
         if arr[mid] > target:

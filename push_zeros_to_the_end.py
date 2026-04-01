@@ -12,6 +12,7 @@ def push_zeros_to_the_end(arr):
 
 def main():
     arr = [8,9, 0, 10,2,0,4,5,6]
+    print(arr)
     res = push_zeros_to_the_end(arr)
     print(res)
 

@@ -9,8 +9,6 @@ def reverse_string(phrase = "This Is Africa"):
             right -= 1
         else:
             break
-   
-
     reversed_string = "".join(list_of_char)
     return reversed_string
 
