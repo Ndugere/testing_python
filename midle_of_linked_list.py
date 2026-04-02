@@ -1,5 +1,5 @@
 def midle_of_linked_list(self, head):
-    slow =fast=head 
+    slow = fast = head, head
     while fast and fast.next:
         slow = slow.next
         fast = fast.next.next
