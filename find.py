@@ -3,7 +3,7 @@ def find(words: list, note: str) -> str:
         return "-"
     
     for each_word in words:
-        new_note = list(note)  # still important fix
+        new_note = list(note)
         there = True 
         
         for i in range(len(each_word)):
